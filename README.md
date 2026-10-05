@@ -1,5 +1,21 @@
 # Liseur
 
+<!-- Personal fork notice — not present upstream. -->
+> **This is a personal fork of [chmouel/liseur](https://github.com/chmouel/liseur).**
+> It adds a **Simplified Chinese** translation (`values-b+zh+Hans`), a CJK serif
+> (Noto Serif SC, OFL, subset) so Chinese headings are not set in the platform
+> sans, an in-app language picker under *Settings ▸ Appearance*, and a `cn` build
+> variant that installs **beside** the official app (package `com.chmouel.liseur.cn`)
+> instead of over it.
+>
+> Build it with `./gradlew assembleCn`; the APK lands in
+> `app/build/outputs/apk/cn/app-cn.apk`.
+>
+> The translation itself is offered upstream — see
+> [#280](https://github.com/chmouel/liseur/issues/280) and the `zh-hans` branch,
+> which carries the translation and the Chinese store listing and **nothing else**.
+> If this fork is behind upstream, `git fetch upstream && git rebase upstream/main`.
+
 <p align="center">
   <a href="https://github.com/chmouel/liseur/releases/latest">
     <img src="https://img.shields.io/github/v/release/chmouel/liseur?style=flat-square&color=10b981" alt="Latest Release">
