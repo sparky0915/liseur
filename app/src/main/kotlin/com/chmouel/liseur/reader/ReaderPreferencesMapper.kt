@@ -419,6 +419,4 @@ internal fun epubNavigatorConfigurationBase(
 private val CJK_READING_FONTS: List<Pair<ReaderFont, String>> = listOf(
     ReaderFont.NOTO_SERIF_SC to "fonts/NotoSerifSC-Regular.ttf",
     ReaderFont.NOTO_SANS_SC to "fonts/NotoSansSC-Regular.ttf",
-    ReaderFont.LXGW_WENKAI to "fonts/LXGWWenKai-Regular.ttf",
-    ReaderFont.ZHUQUE_FANGSONG to "fonts/ZhuqueFangsong-Regular.ttf",
 )

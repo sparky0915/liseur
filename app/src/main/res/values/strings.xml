@@ -695,8 +695,6 @@
     <string name="reader_font_inter" translatable="false">Inter</string>
     <string name="reader_font_noto_serif_sc" translatable="false">思源宋体</string>
     <string name="reader_font_noto_sans_sc" translatable="false">思源黑体</string>
-    <string name="reader_font_lxgw_wenkai" translatable="false">霞鹜文楷</string>
-    <string name="reader_font_zhuque_fangsong" translatable="false">朱雀仿宋</string>
     <string name="reader_font_publisher">Publisher font</string>
     <string name="reader_font_add">Add a font…</string>
     <string name="reader_font_remove">Remove %1$s</string>
