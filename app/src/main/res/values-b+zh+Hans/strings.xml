@@ -399,6 +399,8 @@
     <string name="book_not_downloaded">这本书仍在服务器上。</string>
     <string name="close">关闭</string>
     <string name="reader_no_contents">这本书没有目录。</string>
+    <string name="reader_contents_expand">展开本节</string>
+    <string name="reader_contents_collapse">收起本节</string>
     <string name="reader_untitled_section">无标题章节</string>
     <string name="server_sync_now">立即同步阅读进度</string>
     <string name="server_sync_running">正在同步阅读进度…</string>
@@ -838,6 +840,7 @@
     <string name="about_licences">开源许可</string>
     <string name="about_star_prompt">喜欢 Liseur？欢迎在 GitHub 上给它点个星 \u2b50\ufe0f</string>
     <string name="about_licence_line">Liseur 是遵循 MIT 许可的自由软件。</string>
+    <string name="about_modified_by">本版修改：Lawrence</string>
     <string name="licences_intro">Liseur 完全由自由和开源组件构建。</string>
     <string name="licences_read">%1$s \u2014 阅读</string>
     <string name="read_book">阅读</string>

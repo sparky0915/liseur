@@ -364,6 +364,8 @@
     <string name="book_not_downloaded">Эта книга всё ещё на сервере.</string>
     <string name="close">Закрыть</string>
     <string name="reader_no_contents">У этой книги нет оглавления.</string>
+    <string name="reader_contents_expand">Развернуть раздел</string>
+    <string name="reader_contents_collapse">Свернуть раздел</string>
     <string name="reader_untitled_section">Раздел без названия</string>
     <string name="server_sync_now">Синхронизировать позиции чтения сейчас</string>
     <string name="server_sync_running">Синхронизация позиций чтения…</string>
@@ -896,6 +898,7 @@
     <string name="about_licences">Лицензии открытого ПО</string>
     <string name="about_star_prompt">Нравится Liseur? Поставьте звезду на GitHub \u2b50\ufe0f</string>
     <string name="about_licence_line">Liseur — свободное ПО под лицензией MIT.</string>
+    <string name="about_modified_by">Эту версию изменил Lawrence</string>
     <string name="licences_intro">Liseur собран целиком из свободных и открытых компонентов.</string>
     <string name="licences_read">%1$s \u2014 прочитать</string>
     <string name="read_book">Читать</string>

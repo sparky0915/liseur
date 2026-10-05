@@ -210,6 +210,10 @@ private data class StatsTarget(val bookUrl: String, val title: String)
 private const val SOURCE_URL = "https://github.com/chmouel/liseur"
 private const val SPONSOR_URL = "https://github.com/sponsors/chmouel"
 
+/** The build this one came from. Kept beside the upstream links, not instead
+ *  of them: the About screen names both. */
+private const val FORK_URL = "https://github.com/sparky0915/liseur"
+
 @Composable
 private fun LiseurApp(
     settings: AppSettings,
@@ -474,6 +478,7 @@ private fun LiseurApp(
                 onBack = { screen = Screen.SETTINGS },
                 onOpenSource = { context.openLink(SOURCE_URL.toUri()) },
                 onOpenSponsor = { context.openLink(SPONSOR_URL.toUri()) },
+                onOpenFork = { context.openLink(FORK_URL.toUri()) },
                 onOpenLicences = { screen = Screen.LICENCES },
             )
         }

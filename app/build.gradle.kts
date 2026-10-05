@@ -46,8 +46,8 @@ android {
         applicationId = "com.chmouel.liseur"
         minSdk = 26
         targetSdk = 37
-        versionCode = 47
-        versionName = "0.20.0"
+        versionCode = 48
+        versionName = "0.21"
     }
 
     signingConfigs {
@@ -112,7 +112,7 @@ android {
             // positions, and neither can overwrite the other.
             initWith(getByName("release"))
             applicationIdSuffix = ".cn"
-            versionNameSuffix = "-cn.2"
+            versionNameSuffix = "-cn"
         }
     }
 
