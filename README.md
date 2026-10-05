@@ -8,8 +8,10 @@
 > in either script is covered (none of the Latin four carries a CJK glyph at all).
 > The first two are the 宋 and 黑 of a Chinese font stack, the third the 楷.
 > Also a CJK serif for the UI headings, an in-app language picker under
-> *Settings ▸ Appearance*, and a `cn` build variant that installs **beside** the
-> official app (package `com.chmouel.liseur.cn`) instead of over it.
+> *Settings ▸ Appearance*, a foldable table of contents whose sections open one
+> at a time, this fork named under the upstream author on About, and a `cn`
+> build variant that installs **beside** the official app (package
+> `com.chmouel.liseur.cn`) instead of over it.
 >
 > Build it with `./gradlew assembleCn`; the APK lands in
 > `app/build/outputs/apk/cn/app-cn.apk`.
