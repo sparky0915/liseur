@@ -323,7 +323,15 @@ fun LiseurTheme(
         schemeFor(dark = darkTheme, eInk = palette, dynamicColor = dynamicColor)
     }
 
-    val typography = remember { liseurTypography(literataFamily(context.assets)) }
+    val typography = remember {
+        // The serif styles carry Chinese in this build, so screen titles and the
+        // library's empty-state lines lead with the CJK serif rather than
+        // falling back to the platform sans the way a Latin-only face does.
+        liseurTypography(
+            serif = literataFamily(context.assets),
+            cjk = notoSerifScFamily(context.assets),
+        )
+    }
     MaterialTheme(
         colorScheme = colorScheme,
         typography = typography,

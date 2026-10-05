@@ -18,16 +18,31 @@ fun literataFamily(assets: AssetManager): FontFamily = FontFamily(
     Font("fonts/Literata-Italic.ttf", assets, style = FontStyle.Italic),
 )
 
-fun liseurTypography(serif: FontFamily): Typography = Typography().run {
+/**
+ * The CJK serif — Noto Serif SC (OFL), subset to the GB2312 set plus the
+ * strings in this build.
+ *
+ * A `FontFamily` resolves one font per weight and style, and a font with no
+ * glyph for a character falls back to the *platform* default (a sans), not to
+ * the next entry in the family. So the styles that carry Chinese have to name
+ * this family outright — see [liseurTypography]. Adding this font to
+ * [literataFamily] instead would look right and do nothing.
+ */
+fun notoSerifScFamily(assets: AssetManager): FontFamily = FontFamily(
+    Font("fonts/NotoSerifSC-Regular.ttf", assets),
+    Font("fonts/NotoSerifSC-SemiBold.ttf", assets, weight = FontWeight.SemiBold),
+)
+
+fun liseurTypography(serif: FontFamily, cjk: FontFamily = serif): Typography = Typography().run {
     copy(
-        displayLarge = displayLarge.copy(fontFamily = serif),
-        displayMedium = displayMedium.copy(fontFamily = serif),
-        displaySmall = displaySmall.copy(fontFamily = serif),
-        headlineLarge = headlineLarge.copy(fontFamily = serif),
-        headlineMedium = headlineMedium.copy(fontFamily = serif),
-        headlineSmall = headlineSmall.copy(fontFamily = serif),
+        displayLarge = displayLarge.copy(fontFamily = cjk),
+        displayMedium = displayMedium.copy(fontFamily = cjk),
+        displaySmall = displaySmall.copy(fontFamily = cjk),
+        headlineLarge = headlineLarge.copy(fontFamily = cjk),
+        headlineMedium = headlineMedium.copy(fontFamily = cjk),
+        headlineSmall = headlineSmall.copy(fontFamily = cjk),
         titleLarge = titleLarge.copy(
-            fontFamily = serif,
+            fontFamily = cjk,
             fontWeight = FontWeight.SemiBold,
             fontSize = 24.sp,
         ),
