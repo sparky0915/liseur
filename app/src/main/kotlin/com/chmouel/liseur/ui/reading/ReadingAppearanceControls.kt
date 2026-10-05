@@ -732,6 +732,10 @@ internal fun ReaderFont.composeFamily(assets: android.content.res.AssetManager):
         ReaderFont.VOLLKORN -> FontFamily(Font("fonts/Vollkorn.ttf", assets))
         ReaderFont.ATKINSON -> FontFamily(Font("fonts/AtkinsonHyperlegible-Regular.ttf", assets))
         ReaderFont.INTER -> FontFamily(Font("fonts/Inter.ttf", assets))
+        ReaderFont.NOTO_SERIF_SC -> FontFamily(Font("fonts/NotoSerifSC-Regular.ttf", assets))
+        ReaderFont.NOTO_SANS_SC -> FontFamily(Font("fonts/NotoSansSC-Regular.ttf", assets))
+        ReaderFont.LXGW_WENKAI -> FontFamily(Font("fonts/LXGWWenKai-Regular.ttf", assets))
+        ReaderFont.ZHUQUE_FANGSONG -> FontFamily(Font("fonts/ZhuqueFangsong-Regular.ttf", assets))
         ReaderFont.PUBLISHER -> null
     }
 
@@ -756,6 +760,10 @@ val ReaderFont.label: Int
         ReaderFont.VOLLKORN -> R.string.reader_font_vollkorn
         ReaderFont.ATKINSON -> R.string.reader_font_atkinson
         ReaderFont.INTER -> R.string.reader_font_inter
+        ReaderFont.NOTO_SERIF_SC -> R.string.reader_font_noto_serif_sc
+        ReaderFont.NOTO_SANS_SC -> R.string.reader_font_noto_sans_sc
+        ReaderFont.LXGW_WENKAI -> R.string.reader_font_lxgw_wenkai
+        ReaderFont.ZHUQUE_FANGSONG -> R.string.reader_font_zhuque_fangsong
         ReaderFont.PUBLISHER -> R.string.reader_font_publisher
     }
 
