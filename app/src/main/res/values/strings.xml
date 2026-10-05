@@ -352,6 +352,8 @@
     <string name="book_not_downloaded">This book is still on the server.</string>
     <string name="close">Close</string>
     <string name="reader_no_contents">This book has no table of contents.</string>
+    <string name="reader_contents_expand">Expand section</string>
+    <string name="reader_contents_collapse">Collapse section</string>
     <string name="reader_untitled_section">Untitled section</string>
     <string name="server_sync_now">Sync reading positions now</string>
     <string name="server_sync_running">Syncing reading positions…</string>
@@ -872,6 +874,8 @@
     <string name="about_licences">Open-source licences</string>
     <string name="about_star_prompt">Enjoying Liseur? Consider giving it a star on GitHub \u2b50\ufe0f</string>
     <string name="about_licence_line">Liseur is free software under the MIT licence.</string>
+    <string name="about_modified_by">This build modified by Lawrence</string>
+    <string name="about_fork_link" translatable="false">github.com/sparky0915/liseur</string>
     <string name="licences_intro">Liseur is built entirely from free and open-source components.</string>
     <string name="licences_read">%1$s \u2014 read it</string>
     <string name="read_book">Read</string>

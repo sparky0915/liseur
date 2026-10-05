@@ -337,6 +337,8 @@
     <string name="book_not_downloaded">Dieses Buch liegt noch auf dem Server.</string>
     <string name="close">Schließen</string>
     <string name="reader_no_contents">Dieses Buch hat kein Inhaltsverzeichnis.</string>
+    <string name="reader_contents_expand">Abschnitt ausklappen</string>
+    <string name="reader_contents_collapse">Abschnitt einklappen</string>
     <string name="reader_untitled_section">Unbenannter Abschnitt</string>
     <string name="server_sync_now">Lesepositionen jetzt synchronisieren</string>
     <string name="server_sync_running">Lesepositionen werden synchronisiert…</string>
@@ -847,6 +849,7 @@
     <string name="about_licences">Open-Source-Lizenzen</string>
     <string name="about_star_prompt">Gefällt dir Liseur? Gib ihm einen Stern auf GitHub \u2b50\ufe0f</string>
     <string name="about_licence_line">Liseur ist freie Software unter der MIT-Lizenz.</string>
+    <string name="about_modified_by">Diese Version angepasst von Lawrence</string>
     <string name="licences_intro">Liseur ist vollständig aus freien und quelloffenen Komponenten gebaut.</string>
     <string name="licences_read">%1$s \u2014 lesen</string>
     <string name="read_book">Lesen</string>

@@ -334,6 +334,8 @@
     <string name="book_not_downloaded">Ce livre est encore sur le serveur.</string>
     <string name="close">Fermer</string>
     <string name="reader_no_contents">Ce livre n\'a pas de table des matières.</string>
+    <string name="reader_contents_expand">Développer la section</string>
+    <string name="reader_contents_collapse">Réduire la section</string>
     <string name="reader_untitled_section">Section sans titre</string>
     <string name="server_sync_now">Synchroniser les positions de lecture maintenant</string>
     <string name="server_sync_running">Synchronisation des positions de lecture…</string>
@@ -836,6 +838,7 @@
     <string name="about_licences">Licences open source</string>
     <string name="about_star_prompt">Vous aimez Liseur ? Pensez à lui donner une étoile sur GitHub \u2b50\ufe0f</string>
     <string name="about_licence_line">Liseur est un logiciel libre sous licence MIT.</string>
+    <string name="about_modified_by">Cette version modifiée par Lawrence</string>
     <string name="licences_intro">Liseur est entièrement construit à partir de composants libres et open source.</string>
     <string name="licences_read">%1$s \u2014 le lire</string>
     <string name="read_book">Lire</string>

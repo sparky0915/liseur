@@ -98,6 +98,7 @@ fun AboutScreen(
     onBack: () -> Unit,
     onOpenSource: () -> Unit,
     onOpenSponsor: () -> Unit,
+    onOpenFork: () -> Unit,
     onOpenLicences: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -167,6 +168,24 @@ fun AboutScreen(
                 }
 
                 AuthorBlock(modifier = Modifier.padding(top = 40.dp))
+
+                // Who changed it, under who wrote it. The original line stays
+                // exactly as upstream has it — the MIT licence keeps it, and a
+                // reader deserves to know both names, not one swapped for the
+                // other.
+                Text(
+                    text = stringResource(R.string.about_modified_by),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(top = 16.dp),
+                )
+                TextButton(onClick = onOpenFork) {
+                    Text(
+                        text = stringResource(R.string.about_fork_link),
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
 
                 OutlinedButton(
                     onClick = onOpenSponsor,
