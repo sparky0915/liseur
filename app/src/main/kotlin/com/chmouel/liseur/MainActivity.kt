@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.content.BroadcastReceiver
 import android.content.Context
+import com.chmouel.liseur.ui.settings.withSavedLanguage
 import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -66,6 +67,8 @@ import com.chmouel.liseur.ui.settings.SettingsScreen
 import com.chmouel.liseur.ui.settings.SettingsBackupScreen
 import com.chmouel.liseur.ui.settings.ReadingAppearanceScreen
 import com.chmouel.liseur.ui.settings.HiddenBooksScreen
+import com.chmouel.liseur.ui.settings.LanguageScreen
+import com.chmouel.liseur.ui.settings.applyAppLanguage
 import com.chmouel.liseur.ui.settings.ReadingNavigationScreen
 import com.chmouel.liseur.ui.settings.rememberSettingsZipBackup
 import com.chmouel.liseur.ui.LocalEInk
@@ -84,6 +87,13 @@ import com.chmouel.liseur.domain.SeriesShelf
 import com.chmouel.liseur.ui.widget.WidgetRequests
 
 class MainActivity : ComponentActivity() {
+
+    // The saved reading language has to reach the activity's resources before
+    // anything reads them, and this is the only hook that runs early enough.
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase.withSavedLanguage())
+    }
+
     /**
      * Whether we still have to decide between the library and the book you
      * were reading. The splash screen stays up while we do, which takes one
@@ -178,6 +188,7 @@ private enum class Screen {
     SETTINGS_BACKUP,
     READING_APPEARANCE,
     READING_NAVIGATION,
+    LANGUAGE,
     HIDDEN_BOOKS,
     SERVER_ACCOUNT,
     BROWSE_LIBRARIES,
@@ -207,6 +218,7 @@ private fun LiseurApp(
     onWidgetHandled: () -> Unit = {},
 ) {
     var screen by rememberSaveable { mutableStateOf(Screen.LIBRARY) }
+    val languageContext = LocalContext.current
     LaunchedEffect(widgetTarget, widgetBook) {
         if (widgetTarget != null) {
             screen = if (widgetTarget == "stats") Screen.STATS else Screen.LIBRARY
@@ -337,6 +349,7 @@ private fun LiseurApp(
                 },
                 onOpenReadingAppearance = { screen = Screen.READING_APPEARANCE },
                 onOpenReadingNavigation = { screen = Screen.READING_NAVIGATION },
+                onOpenLanguage = { screen = Screen.LANGUAGE },
                 onOpenSettingsBackup = { screen = Screen.SETTINGS_BACKUP },
                 onOpenHiddenBooks = { screen = Screen.HIDDEN_BOOKS },
                 libraryFolders = library.libraryFolders,
@@ -367,6 +380,15 @@ private fun LiseurApp(
             HiddenBooksScreen(
                 hidden = hidden,
                 onUnhide = { library.unhide(it.url) },
+                onBack = back,
+            )
+        }
+
+        Screen.LANGUAGE -> {
+            val back = { screen = Screen.SETTINGS }
+            BackHandler { back() }
+            LanguageScreen(
+                onPick = { applyAppLanguage(languageContext, it) },
                 onBack = back,
             )
         }

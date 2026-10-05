@@ -1,6 +1,7 @@
 package com.chmouel.liseur.reader
 
 import android.content.Context
+import com.chmouel.liseur.ui.settings.withSavedLanguage
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
@@ -64,6 +65,13 @@ import org.readium.r2.shared.util.AbsoluteUrl
 import org.readium.r2.shared.util.toAbsoluteUrl
 
 class ReaderActivity : FragmentActivity() {
+
+    // The saved reading language has to reach the activity's resources before
+    // anything reads them, and this is the only hook that runs early enough.
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase.withSavedLanguage())
+    }
+
 
     private var navigator: EpubNavigatorFragment? = null
     private var pageTurner: PageTurner? = null

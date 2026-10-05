@@ -570,6 +570,12 @@
     <string name="settings">Paramètres</string>
     <string name="settings_appearance">Apparence</string>
     <string name="settings_theme">Thème</string>
+
+    <string name="settings_language">Langue</string>
+
+    <string name="settings_language_system">Langue du système</string>
+
+    <string name="settings_language_detail">Suivre le téléphone, ou fixer l’application sur une langue.</string>
     <string name="theme_system">Suivre le système</string>
     <string name="theme_light">Clair</string>
     <string name="theme_dark">Sombre</string>

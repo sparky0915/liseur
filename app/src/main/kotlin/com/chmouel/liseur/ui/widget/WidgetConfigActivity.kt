@@ -1,5 +1,8 @@
 package com.chmouel.liseur.ui.widget
 
+import android.content.Context
+import com.chmouel.liseur.ui.settings.withSavedLanguage
+
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
@@ -44,6 +47,12 @@ import kotlinx.coroutines.launch
  * acts on a widget id that belongs to one of Liseur's own stats widgets.
  */
 class WidgetConfigActivity : ComponentActivity() {
+    // The saved reading language has to reach this activity's resources before
+    // anything reads them; attachBaseContext is the only hook that runs first.
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase.withSavedLanguage())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val appWidgetId = intent?.getIntExtra(

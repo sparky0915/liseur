@@ -1,5 +1,7 @@
 package com.chmouel.liseur.ui.widget
 
+import com.chmouel.liseur.ui.settings.withSavedLanguage
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -35,6 +37,12 @@ object WidgetRequests {
 
 /** Unexported entry point for widget taps; the launcher holds its PendingIntent. */
 class WidgetLaunchActivity : Activity() {
+    // The saved reading language has to reach this activity's resources before
+    // anything reads them; attachBaseContext is the only hook that runs first.
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase.withSavedLanguage())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {

@@ -570,6 +570,12 @@
     <string name="settings">Impostazioni</string>
     <string name="settings_appearance">Aspetto</string>
     <string name="settings_theme">Tema</string>
+
+    <string name="settings_language">Lingua</string>
+
+    <string name="settings_language_system">Lingua di sistema</string>
+
+    <string name="settings_language_detail">Segui il telefono, oppure fissa l’app su una lingua.</string>
     <string name="theme_system">Segui il sistema</string>
     <string name="theme_light">Chiaro</string>
     <string name="theme_dark">Scuro</string>

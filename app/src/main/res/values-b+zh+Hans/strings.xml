@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 简体中文（Simplified Chinese）-->
 <resources>
     <plurals name="library_book_count">
         <item quantity="other">%d 本图书</item>
@@ -600,6 +601,9 @@
     <string name="settings">设置</string>
     <string name="settings_appearance">外观</string>
     <string name="settings_theme">主题</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_language_system">跟随系统</string>
+    <string name="settings_language_detail">跟随手机设置，或把本应用固定为某一种语言。</string>
     <string name="theme_system">跟随系统</string>
     <string name="theme_light">浅色</string>
     <string name="theme_dark">深色</string>

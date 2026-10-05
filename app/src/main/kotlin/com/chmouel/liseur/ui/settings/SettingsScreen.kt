@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.outlined.ArrowBack
@@ -74,6 +75,7 @@ fun SettingsScreen(
     onThemeMode: (ThemeMode) -> Unit,
     onDynamicColor: (Boolean) -> Unit,
     onOpenAccount: () -> Unit,
+    onOpenLanguage: () -> Unit,
     onOpenReadingAppearance: () -> Unit,
     onOpenReadingNavigation: () -> Unit,
     onOpenHiddenBooks: () -> Unit,
@@ -88,6 +90,7 @@ fun SettingsScreen(
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val folders by libraryFolders.collectAsStateWithLifecycle(emptyList())
     var folderToRemove by remember { mutableStateOf<LibraryFolder?>(null) }
+
 
     folderToRemove?.let { folder ->
         AlertDialog(
@@ -180,6 +183,16 @@ fun SettingsScreen(
                             stringResource(readingThemeChoice.label),
                         ),
                         onClick = onOpenReadingAppearance,
+                    )
+                    RowDivider()
+                    // Last in the group, after the reading appearance: the two
+                    // are the app's two faces — the theme and the page decide
+                    // what it looks like, this decides what it says.
+                    ConnectionRow(
+                        icon = { Icon(Icons.Outlined.Translate, contentDescription = null) },
+                        title = stringResource(R.string.settings_language),
+                        subtitle = stringResource(R.string.settings_language_detail),
+                        onClick = onOpenLanguage,
                     )
                 }
 

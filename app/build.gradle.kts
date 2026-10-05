@@ -99,6 +99,21 @@ android {
             versionNameSuffix = "-dev"
             isMinifyEnabled = false
         }
+        // The Simplified Chinese build. It carries a `.cn` package suffix so it
+        // installs beside the official app instead of over it — the same idea
+        // as `dev` above, and the reason a reader can compare the two side by
+        // side without either one touching the other's library, reading
+        // positions or highlights.
+        create("cn") {
+            // Based on `release`, not `debug`: the Simplified Chinese build is a
+            // build a reader actually installs and uses, so it wants the shrinker
+            // and the signing config. Only the package suffix makes it distinct —
+            // it installs beside the official app, own library and own reading
+            // positions, and neither can overwrite the other.
+            initWith(getByName("release"))
+            applicationIdSuffix = ".cn"
+            versionNameSuffix = "-cn"
+        }
     }
 
     compileOptions {
@@ -180,6 +195,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.lifecycle.runtime.compose)

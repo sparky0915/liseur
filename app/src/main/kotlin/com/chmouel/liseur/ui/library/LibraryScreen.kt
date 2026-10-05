@@ -138,6 +138,7 @@ import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.chmouel.liseur.ui.browseCover
+import com.chmouel.liseur.ui.theme.literataFamily
 import com.chmouel.liseur.R
 import com.chmouel.liseur.data.remote.CatalogStatus
 import com.chmouel.liseur.data.remote.SyncFailure
@@ -491,8 +492,17 @@ fun LibraryScreen(
                                 )
                                 Spacer(Modifier.width(if (wide) 16.dp else 10.dp))
                                 Column {
+                                    // Read outside the memo: LocalContext.current is itself
+                                    // a composable call and cannot be read inside a
+                                    // `remember { }` lambda.
+                                    val assets = LocalContext.current.assets
+                                    val appNameFamily = remember(assets) { literataFamily(assets) }
                                     Text(
                                         text = stringResource(R.string.library_title),
+                                        // The app's own name, and Latin: it keeps Literata
+                                        // rather than the CJK serif the surrounding titles
+                                        // use, so the wordmark reads the way it was designed.
+                                        fontFamily = appNameFamily,
                                         style = if (wide) {
                                             MaterialTheme.typography.headlineMedium
                                         } else {
