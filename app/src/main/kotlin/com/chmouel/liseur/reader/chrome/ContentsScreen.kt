@@ -628,8 +628,11 @@ private fun ContentsRow(
                 Modifier
                     .clip(RoundedCornerShape(6.dp))
                     .clickable(role = Role.Button, onClick = onToggle)
-                    .heightIn(min = 48.dp)
-                    .padding(horizontal = 4.dp),
+                    // No minimum height: a floor here is a floor on the whole
+                    // row, and it made a foldable section taller than the
+                    // sections around it. The chevron is sized by the icon
+                    // instead, so both kinds of row are the same height.
+                    .padding(horizontal = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
