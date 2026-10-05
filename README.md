@@ -2,10 +2,10 @@
 
 <!-- Personal fork notice — not present upstream. -->
 > **This is a personal fork of [chmouel/liseur](https://github.com/chmouel/liseur).**
-> It adds a **Simplified Chinese** translation (`values-b+zh+Hans`) and four
-> bundled Chinese reading faces — 思源宋体 (Noto Serif SC), 思源黑体 (Noto Sans SC),
-> 霞鹜文楷 (LXGW WenKai) and 朱雀仿宋 (Zhuque Fangsong), all OFL and subset to the
-> GB2312 set, because none of the Latin four carries a CJK glyph. Also a CJK serif
+> It adds a **Simplified Chinese** translation (`values-b+zh+Hans`) and two
+> bundled Chinese reading faces — 思源宋体 (Noto Serif SC) and 思源黑体 (Noto Sans SC),
+> both OFL, subset to the GB2312 **plus Big5** sets so a book in either script is
+> covered (neither of the Latin four carries a CJK glyph at all). Also a CJK serif
 > for the UI headings, an in-app language picker under *Settings ▸ Appearance*, and
 > a `cn` build variant that installs **beside** the official app
 > (package `com.chmouel.liseur.cn`) instead of over it.
