@@ -112,7 +112,7 @@ android {
             // positions, and neither can overwrite the other.
             initWith(getByName("release"))
             applicationIdSuffix = ".cn"
-            versionNameSuffix = "-cn"
+            versionNameSuffix = "-cn.2"
         }
     }
 

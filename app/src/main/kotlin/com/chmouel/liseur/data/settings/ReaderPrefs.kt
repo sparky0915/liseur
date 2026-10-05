@@ -14,6 +14,14 @@ enum class ReaderFont(val id: String, val displayName: String, val cssName: Stri
     VOLLKORN("vollkorn", "Vollkorn", "Vollkorn"),
     ATKINSON("atkinson", "Atkinson Hyperlegible", "Atkinson Hyperlegible"),
     INTER("inter", "Inter", "Inter"),
+    // Chinese faces, for the books the Latin four cannot set at all: none of
+    // them carries a CJK glyph, so a Chinese book silently fell back to the
+    // system font whatever the reader chose. Named in Chinese, because that is
+    // the word a reader looking for 宋体 or 文楷 scans the list for.
+    NOTO_SERIF_SC("noto_serif_sc", "思源宋体", "Noto Serif SC"),
+    NOTO_SANS_SC("noto_sans_sc", "思源黑体", "Noto Sans SC"),
+    LXGW_WENKAI("lxgw_wenkai", "霞鹜文楷", "LXGW WenKai"),
+    ZHUQUE_FANGSONG("zhuque_fangsong", "朱雀仿宋", "Zhuque Fangsong"),
     PUBLISHER("publisher", "Publisher font", null),
     ;
 

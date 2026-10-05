@@ -366,6 +366,19 @@ fun epubNavigatorConfiguration(
             }
         }
 
+        // The Chinese faces. One weight each, the cut the subset was taken
+        // from: a book asking for bold gets the synthetic weight every other
+        // single-face family here also gets.
+        CJK_READING_FONTS.forEach { (font, asset) ->
+            addFontFamilyDeclaration(FontFamily(checkNotNull(font.cssName))) {
+                addFontFace {
+                    addSource(asset)
+                    setFontStyle(FontStyle.NORMAL)
+                    setFontWeight(400..400)
+                }
+            }
+        }
+
         // Every imported font is declared, not just the chosen one, so
         // switching between them is the instant change it already is for
         // the four above — the web view only fetches the family a page
@@ -395,3 +408,17 @@ internal fun epubNavigatorConfigurationBase(
     EpubNavigatorFragment.Configuration {
         configureFontSizeRendering(reflowable)
     }
+
+/**
+ * The bundled Chinese reading faces and the asset each one loads from.
+ *
+ * Kept as a list rather than four more inline declarations because the set is
+ * expected to grow and the shape is identical for every entry: one file, one
+ * normal weight, no italic.
+ */
+private val CJK_READING_FONTS: List<Pair<ReaderFont, String>> = listOf(
+    ReaderFont.NOTO_SERIF_SC to "fonts/NotoSerifSC-Regular.ttf",
+    ReaderFont.NOTO_SANS_SC to "fonts/NotoSansSC-Regular.ttf",
+    ReaderFont.LXGW_WENKAI to "fonts/LXGWWenKai-Regular.ttf",
+    ReaderFont.ZHUQUE_FANGSONG to "fonts/ZhuqueFangsong-Regular.ttf",
+)
