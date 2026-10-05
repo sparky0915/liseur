@@ -2,13 +2,14 @@
 
 <!-- Personal fork notice — not present upstream. -->
 > **This is a personal fork of [chmouel/liseur](https://github.com/chmouel/liseur).**
-> It adds a **Simplified Chinese** translation (`values-b+zh+Hans`) and two
-> bundled Chinese reading faces — 思源宋体 (Noto Serif SC) and 思源黑体 (Noto Sans SC),
-> both OFL, subset to the GB2312 **plus Big5** sets so a book in either script is
-> covered (neither of the Latin four carries a CJK glyph at all). Also a CJK serif
-> for the UI headings, an in-app language picker under *Settings ▸ Appearance*, and
-> a `cn` build variant that installs **beside** the official app
-> (package `com.chmouel.liseur.cn`) instead of over it.
+> It adds a **Simplified Chinese** translation (`values-b+zh+Hans`) and three
+> bundled Chinese reading faces — 思源宋体 (Noto Serif SC), 思源黑体 (Noto Sans SC) and
+> 霞鹜文楷 (LXGW WenKai) — all OFL, subset to the GB2312 **plus Big5** sets so a book
+> in either script is covered (none of the Latin four carries a CJK glyph at all).
+> The first two are the 宋 and 黑 of a Chinese font stack, the third the 楷.
+> Also a CJK serif for the UI headings, an in-app language picker under
+> *Settings ▸ Appearance*, and a `cn` build variant that installs **beside** the
+> official app (package `com.chmouel.liseur.cn`) instead of over it.
 >
 > Build it with `./gradlew assembleCn`; the APK lands in
 > `app/build/outputs/apk/cn/app-cn.apk`.
