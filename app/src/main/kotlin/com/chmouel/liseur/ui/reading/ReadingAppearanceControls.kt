@@ -734,6 +734,7 @@ internal fun ReaderFont.composeFamily(assets: android.content.res.AssetManager):
         ReaderFont.INTER -> FontFamily(Font("fonts/Inter.ttf", assets))
         ReaderFont.NOTO_SERIF_SC -> FontFamily(Font("fonts/NotoSerifSC-Regular.ttf", assets))
         ReaderFont.NOTO_SANS_SC -> FontFamily(Font("fonts/NotoSansSC-Regular.ttf", assets))
+        ReaderFont.LXGW_WENKAI -> FontFamily(Font("fonts/LXGWWenKai-Regular.ttf", assets))
         ReaderFont.PUBLISHER -> null
     }
 
@@ -760,6 +761,7 @@ val ReaderFont.label: Int
         ReaderFont.INTER -> R.string.reader_font_inter
         ReaderFont.NOTO_SERIF_SC -> R.string.reader_font_noto_serif_sc
         ReaderFont.NOTO_SANS_SC -> R.string.reader_font_noto_sans_sc
+        ReaderFont.LXGW_WENKAI -> R.string.reader_font_lxgw_wenkai
         ReaderFont.PUBLISHER -> R.string.reader_font_publisher
     }
 
