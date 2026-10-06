@@ -7,18 +7,22 @@
 > 霞鹜文楷 (LXGW WenKai) — all OFL, subset to the GB2312 **plus Big5** sets so a book
 > in either script is covered (none of the Latin four carries a CJK glyph at all).
 > The first two are the 宋 and 黑 of a Chinese font stack, the third the 楷.
-> Also a CJK serif for the UI headings, an in-app language picker under
-> *Settings ▸ Appearance*, a foldable table of contents whose sections open one
-> at a time, this fork named under the upstream author on About, and a `cn`
-> build variant that installs **beside** the official app (package
-> `com.chmouel.liseur.cn`) instead of over it.
+> Also a CJK serif for the UI headings, a foldable table of contents whose sections
+> open one at a time, this fork named under the upstream author on About, and a
+> `cn` build variant that installs **beside** the official app (package
+> `com.chmouel.liseur.cn`) instead of over it. The in-app language picker is
+> **upstream's own** now (*Settings ▸ Reading Appearance ▸ Advanced*), so that area
+> no longer diverges.
 >
 > Build it with `./gradlew assembleCn`; the APK lands in
 > `app/build/outputs/apk/cn/app-cn.apk`.
 >
-> The translation itself is offered upstream — see
-> [#280](https://github.com/chmouel/liseur/issues/280) and the `zh-hans` branch,
-> which carries the translation and the Chinese store listing and **nothing else**.
+> The Simplified Chinese translation and the Chinese store listing were contributed
+> upstream and are **in v0.21.0** — the `values-b+zh+Hans` resources and
+> `fastlane/metadata/android/zh-CN/` now come from `chmouel/liseur` itself, so this
+> fork no longer carries its own copy. The foldable table of contents is offered the
+> same way: see [#289](https://github.com/chmouel/liseur/issues/289) and the
+> `toc-fold` branch.
 > If this fork is behind upstream, `git fetch upstream && git rebase upstream/main`.
 
 <p align="center">
