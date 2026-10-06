@@ -366,6 +366,8 @@
     <string name="book_not_downloaded">Эта книга всё ещё на сервере.</string>
     <string name="close">Закрыть</string>
     <string name="reader_no_contents">У этой книги нет оглавления.</string>
+    <string name="reader_contents_expand">Развернуть раздел</string>
+    <string name="reader_contents_collapse">Свернуть раздел</string>
     <string name="reader_untitled_section">Раздел без названия</string>
     <string name="server_sync_now">Синхронизировать позиции чтения сейчас</string>
     <string name="server_sync_running">Синхронизация позиций чтения…</string>

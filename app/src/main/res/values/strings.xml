@@ -352,6 +352,8 @@
     <string name="book_not_downloaded">This book is still on the server.</string>
     <string name="close">Close</string>
     <string name="reader_no_contents">This book has no table of contents.</string>
+    <string name="reader_contents_expand">Expand section</string>
+    <string name="reader_contents_collapse">Collapse section</string>
     <string name="reader_untitled_section">Untitled section</string>
     <string name="server_sync_now">Sync reading positions now</string>
     <string name="server_sync_running">Syncing reading positions…</string>

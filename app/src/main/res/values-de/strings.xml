@@ -337,6 +337,8 @@
     <string name="book_not_downloaded">Dieses Buch liegt noch auf dem Server.</string>
     <string name="close">Schließen</string>
     <string name="reader_no_contents">Dieses Buch hat kein Inhaltsverzeichnis.</string>
+    <string name="reader_contents_expand">Abschnitt ausklappen</string>
+    <string name="reader_contents_collapse">Abschnitt einklappen</string>
     <string name="reader_untitled_section">Unbenannter Abschnitt</string>
     <string name="server_sync_now">Lesepositionen jetzt synchronisieren</string>
     <string name="server_sync_running">Lesepositionen werden synchronisiert…</string>

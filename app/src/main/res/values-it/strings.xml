@@ -334,6 +334,8 @@
     <string name="book_not_downloaded">Questo libro è ancora sul server.</string>
     <string name="close">Chiudi</string>
     <string name="reader_no_contents">Questo libro non ha un indice.</string>
+    <string name="reader_contents_expand">Espandi sezione</string>
+    <string name="reader_contents_collapse">Comprimi sezione</string>
     <string name="reader_untitled_section">Sezione senza titolo</string>
     <string name="server_sync_now">Sincronizza ora le posizioni di lettura</string>
     <string name="server_sync_running">Sincronizzazione delle posizioni…</string>

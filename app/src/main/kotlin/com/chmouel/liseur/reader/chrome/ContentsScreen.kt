@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.automirrored.outlined.Notes
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CloudSync
@@ -55,6 +56,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
@@ -75,7 +77,14 @@ import org.readium.r2.shared.publication.Link
 import org.readium.r2.shared.publication.Publication
 
 /** One line of the contents, with how deeply it is nested. */
-data class ContentsEntry(val depth: Int, val link: Link)
+data class ContentsEntry(
+    val depth: Int,
+    val link: Link,
+    /** Whether this section has subsections to fold away. */
+    val hasChildren: Boolean = false,
+    /** Whether those subsections are currently shown. */
+    val expanded: Boolean = false,
+)
 
 /** The four ways of getting around a book. */
 private enum class ContentsTab(val labelRes: Int) {
@@ -119,6 +128,13 @@ fun ContentsScreen(
     val expandedIds = rememberSaveable(saver = ExpandedIdsSaver) { mutableStateListOf<String>() }
     val toggleExpanded: (BookAnnotation) -> Unit = { annotation ->
         if (!expandedIds.remove(annotation.id)) expandedIds.add(annotation.id)
+    }
+    // Which sections of the contents are open. Separate from expandedIds
+    // above: those hold annotation ids, these hold link hrefs, and the two
+    // lists are saved and restored by the same saver.
+    val tocExpandedIds = rememberSaveable(saver = ExpandedIdsSaver) { mutableStateListOf<String>() }
+    val toggleTocExpanded: (String) -> Unit = { key ->
+        if (!tocExpandedIds.remove(key)) tocExpandedIds.add(key)
     }
 
     Scaffold(
@@ -245,7 +261,9 @@ fun ContentsScreen(
                         publication = publication,
                         theme = theme,
                         currentHref = currentHref,
-                        onEntrySelected = onEntrySelected,
+                        expandedIds = tocExpandedIds,
+                    onToggleExpanded = toggleTocExpanded,
+                    onEntrySelected = onEntrySelected,
                     )
 
                     ContentsTab.BOOKMARKS -> AnnotationList(
@@ -293,9 +311,24 @@ private fun ContentsList(
     publication: Publication,
     theme: ReaderTheme,
     currentHref: String?,
+    expandedIds: SnapshotStateList<String>,
+    onToggleExpanded: (String) -> Unit,
     onEntrySelected: (Link) -> Unit,
 ) {
-    val entries = remember(publication) { publication.tableOfContents.flatten() }
+    val toc = remember(publication) { publication.tableOfContents }
+    // The list is the fold state: only sections in expandedIds contribute
+    // their subsections, so this recomposes as sections are opened and shut.
+    val entries = remember(toc, expandedIds.toList()) { toc.flatten(expanded = expandedIds.toSet()) }
+    // The contents opens as the first level alone — the parts of the book, not
+    // every piece inside them — and the one path the reader is already on is
+    // opened so "you are here" still has somewhere to point. Guarded on an
+    // empty set so a section the reader has folded away stays folded, and so
+    // this does not fight the saved state across a rotation.
+    LaunchedEffect(toc, currentHref) {
+        if (expandedIds.isEmpty()) {
+            expandedIds.addAll(toc.pathTo(currentHref))
+        }
+    }
     // Contents entries point at an anchor inside a chapter file, while the
     // reader usually only knows which file it is in. Match the anchor when we
     // have one, otherwise fall back to the first entry of that file so the
@@ -332,6 +365,7 @@ private fun ContentsList(
                 entry = entry,
                 theme = theme,
                 current = index == currentIndex,
+                onToggle = { onToggleExpanded(entry.link.href.toString()) },
                 onClick = { onEntrySelected(entry.link) },
             )
             HorizontalDivider(color = theme.foreground.copy(alpha = 0.08f))
@@ -546,6 +580,7 @@ private fun ContentsRow(
     entry: ContentsEntry,
     theme: ReaderTheme,
     current: Boolean,
+    onToggle: () -> Unit,
     onClick: () -> Unit,
 ) {
     Row(
@@ -586,13 +621,86 @@ private fun ContentsRow(
                 overflow = TextOverflow.Ellipsis,
             )
         }
+        if (entry.hasChildren) {
+            // Its own click target, so folding a section away is never
+            // mistaken for asking to be taken into it.
+            Box(
+                Modifier
+                    .clip(RoundedCornerShape(6.dp))
+                    .clickable(role = Role.Button, onClick = onToggle)
+                    // No minimum height: a floor here is a floor on the whole
+                    // row, and it made a foldable section taller than the
+                    // sections around it. The chevron is sized by the icon
+                    // instead, so both kinds of row are the same height.
+                    .padding(horizontal = 8.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = stringResource(
+                        if (entry.expanded) {
+                            R.string.reader_contents_collapse
+                        } else {
+                            R.string.reader_contents_expand
+                        },
+                    ),
+                    tint = theme.foreground.copy(alpha = 0.55f),
+                    modifier = Modifier.rotate(if (entry.expanded) 90f else 0f),
+                )
+            }
+        }
     }
 }
 
-private fun List<Link>.flatten(depth: Int = 0): List<ContentsEntry> =
+/**
+ * The rows to show, given which sections are open.
+ *
+ * A section's subsections are only walked while it is in [expanded], so the
+ * list *is* the fold state: `flatten(expanded = emptySet())` is the top level
+ * alone. Which sections start open is decided by the caller, not here.
+ */
+private fun List<Link>.flatten(
+    depth: Int = 0,
+    expanded: Set<String> = emptySet(),
+): List<ContentsEntry> =
     flatMap { link ->
-        listOf(ContentsEntry(depth, link)) + link.children.flatten(depth + 1)
+        val key = link.href.toString()
+        val open = key in expanded
+        listOf(
+            ContentsEntry(
+                depth = depth,
+                link = link,
+                hasChildren = link.children.isNotEmpty(),
+                expanded = open,
+            ),
+        ) + if (open) link.children.flatten(depth + 1, expanded) else emptyList()
     }
+
+/**
+ * Every href on the path down to [href], innermost last.
+ *
+ * Used to open the sections a reader is already inside, so arriving at the
+ * contents from a nested chapter still shows where they are.
+ */
+private fun List<Link>.pathTo(href: String?): List<String> {
+    if (href == null) return emptyList()
+    walkTo(href, exactOnly = true).let { if (it.isNotEmpty()) return it }
+    // The reader often only knows the file it is in, not the anchor, so a
+    // second pass settles for the first entry of that file.
+    return walkTo(href, exactOnly = false)
+}
+
+private fun List<Link>.walkTo(href: String, exactOnly: Boolean): List<String> {
+    val file = href.substringBefore('#')
+    for (link in this) {
+        val key = link.href.toString()
+        val match = if (exactOnly) key == href else key.substringBefore('#') == file
+        if (match) return listOf(key)
+        val deeper = link.children.walkTo(href, exactOnly)
+        if (deeper.isNotEmpty()) return listOf(key) + deeper
+    }
+    return emptyList()
+}
 
 /**
  * Keeps the opened-out marks across a rotation.
